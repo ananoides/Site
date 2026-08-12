@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nome do Negócio — Estética</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,13 +21,33 @@
       </div>
     </div>
 
-    <nav class="nav">
+  <!-- botão hambúrguer: só aparece em telas pequenas -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+    <nav class="nav" id="navMenu">
       <a href="#inicio" class="ativo">Início</a>
       <a href="#sobre">Sobre</a>
       <a href="#servicos">Serviços</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#contato">Contato</a>
+
+      <!-- versão do botão que só aparece dentro do menu mobile -->
+      <a href="#" class="btn-header nav-cta-mobile">
+        <span class="icone-whatsapp">&#9742;</span> Agendar Agora
+      </a>
     </nav>
+ 
+    <a href="#" class="btn-header">
+      <span class="icone-whatsapp">&#9742;</span> Agendar Agora
+    </a>
+  </header>
+ 
+  <!-- fundo escurecido atrás do menu mobile aberto -->
+  <div class="menu-overlay" id="menuOverlay"></div>
 
     <a href="#" class="btn-header">
         <a href="https://wa.me/5521992933172?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es"
@@ -160,10 +181,33 @@
     <h2 class="secao-titulo">Contato</h2>
     <p class="secao-texto">
       Instagram: @studiosabrinapieno<br>
-      WhatsApp: (21) 99999-9999<br>
+      WhatsApp: (21) 99293-3172<br>
       Endereço: Estrada do Três Rios, 1086, sala 501 - Freguesia, Rio de Janeiro
     </p>
   </section>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+ 
+    function fecharMenu() {
+      navMenu.classList.remove('aberto');
+      menuOverlay.classList.remove('ativo');
+    }
+ 
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('aberto');
+      menuOverlay.classList.toggle('ativo');
+    });
+ 
+    menuOverlay.addEventListener('click', fecharMenu);
+ 
+    // fecha o menu ao clicar em qualquer link dele
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', fecharMenu);
+    });
+  </script>
 
 </body>
 </html>
